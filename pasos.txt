@@ -1,0 +1,6 @@
+npm init -y
+npm install express ejs
+
+node app.js
+
+http://localhost:3000
