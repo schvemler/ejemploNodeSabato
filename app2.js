@@ -22,21 +22,26 @@ app.get('/', (req, res) => {
 });
 
 // 2. Ruta para Nosotros
-app.get('/nosotros', (req, res) => {
-  res.render('nosotros', { titulo: 'Sobre Nosotros' });
+app.get('/shun', (req, res) => {
+  res.render('shun', { titulo: 'shun' });
 });
 
-// 3. Ruta para Contacto
-app.get('/contacto', (req, res) => {
-  res.render('contacto', { titulo: 'Contáctanos' });
+
+app.get('/ikki', (req, res) => {
+  res.render('ikki', { titulo: 'ikki' });
 });
 
-// 4. Ruta para La Maxi Lista
-app.get('/lamaxilista', (req, res) => {
-  res.render('lamaxilista', { titulo: 'La Maxi Lista' });
+
+app.get('/informacionGeneral', (req, res) => {
+  res.render('informacionGeneral', { titulo: 'informacion General' });
 });
 
-// 5. Ruta para Transferencias
+
+
+
+
+
+
 app.get('/transferencias', (req, res) => {
   res.render('transferencias', { titulo: 'Transferencias' });
 });

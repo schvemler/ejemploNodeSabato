@@ -1,9 +1,16 @@
 [
   {
-    "id": 1788283171959,
-    "nombre": "JUAN IGNACIO",
-    "descripcion": "f",
-    "monto": "0.01",
-    "fecha": "1/9/2026, 02:19:31"
+    "id": 1788459026784,
+    "nombre": "juan cruz",
+    "descripcion": "VENTA ",
+    "monto": "333",
+    "fecha": "3/9/2026, 03:10:26"
+  },
+  {
+    "id": 1788459123085,
+    "nombre": "mayoneso",
+    "descripcion": "galan de cine",
+    "monto": "66",
+    "fecha": "3/9/2026, 03:12:03"
   }
 ]
