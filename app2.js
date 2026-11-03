@@ -3,7 +3,7 @@ const path = require('path');
 
 // Importar el modelo de datos
 const datosModel = require('./models/datosModel');
-
+const proceresModel = require('./models/proceresModel');
 const app = express();
 const PUERTO = 3000;
 
@@ -65,7 +65,7 @@ app.post('/ingresar', (req, res) => {
   proceresModel.guardar({ nombre, descripcion,logros,fecha_nacimiento});
   
   // Redireccionar a la vista de la tabla
-  res.redirect('/registros');
+  res.redirect('/registros_proceres');
 });
 
 
