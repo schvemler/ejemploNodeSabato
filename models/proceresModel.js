@@ -43,54 +43,54 @@ function guardar(nuevoDato) {
   return registro;
 }
 
+//obtener registro por ID
 
-// Obtener un registro específico por su ID
 function obtenerPorId(id) {
   const datos = obtenerTodos();
-  // Comparamos convirtiendo a Number por si acaso el ID llega como string desde una URL o parámetro
-  return datos.find(registro => Number(registro.id) === Number(id)) || null;
+  // Comparamos convirtiendo a String o Number por seguridad en los tipos de ID
+  return datos.find(item => String(item.id) === String(id)) || null;
 }
 
-// Editar un registro existente por su ID
-function editarPorId(id, datosActualizados) {
+// Actualizar un registro existente por su ID (UPDATE)
+function actualizar(id, datosActualizados) {
   asegurarArchivo();
   const datos = obtenerTodos();
-  const index = datos.findIndex(registro => Number(registro.id) === Number(id));
+  let registroActualizado = null;
 
-  // Si no se encuentra el registro, retornamos null o false
-  if (index === -1) {
-    return null;
+  const datosModificados = datos.map(item => {
+    if (String(item.id) === String(id)) {
+      registroActualizado = {
+        ...item,
+        ...datosActualizados,
+        id: item.id, // Mantenemos el ID original intacto
+        fechaModificacion: new Date().toLocaleString('es-AR')
+      };
+      return registroActualizado;
+    }
+    return item;
+  });
+
+  if (registroActualizado) {
+    fs.writeFileSync(rutaArchivo, JSON.stringify(datosModificados, null, 2), 'utf-8');
   }
 
-  // Mantenemos el ID original y actualizamos el resto de los campos
-  datos[index] = {
-    ...datos[index],
-    ...datosActualizados,
-    id: Number(id), // Aseguramos que no se sobrescriba el ID
-    fechaActualizacion: new Date().toLocaleString('es-AR') // Opcional: registrar cuándo se modificó
-  };
-
-  fs.writeFileSync(rutaArchivo, JSON.stringify(datos, null, 2), 'utf-8');
-  return datos[index];
+  return registroActualizado; // Retorna el objeto actualizado o null si no existe
 }
 
-// Eliminar un registro por su ID
-function eliminarPorId(id) {
+// Eliminar un registro por su ID (DELETE)
+function eliminar(id) {
   asegurarArchivo();
   const datos = obtenerTodos();
-  const index = datos.findIndex(registro => Number(registro.id) === Number(id));
+  const datosFiltrados = datos.filter(item => String(item.id) !== String(id));
 
-  if (index === -1) {
-    return false; // Retorna false si no lo encontró para eliminar
+  // Si la longitud es menor, significa que se encontró y eliminó un elemento
+  if (datosFiltrados.length !== datos.length) {
+    fs.writeFileSync(rutaArchivo, JSON.stringify(datosFiltrados, null, 2), 'utf-8');
+    return true;
   }
 
-  // Quitamos el elemento del array
-  const eliminado = datos.splice(index, 1)[0];
-  fs.writeFileSync(rutaArchivo, JSON.stringify(datos, null, 2), 'utf-8');
-  
-  return eliminado; // Retorna el objeto que fue eliminado
+  return false; // Retorna false si no se encontró el ID
 }
-
 
 
 
@@ -104,6 +104,6 @@ module.exports = {
   obtenerTodos,
   guardar,
   obtenerPorId,
-  editarPorId,
-  eliminarPorId
+  actualizar,
+  eliminar
 };

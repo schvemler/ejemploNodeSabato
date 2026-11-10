@@ -3,41 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title><%= titulo %></title>
-  <style>
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f4f4f4; }
-  </style>
 </head>
 <body>
   <h1><%= titulo %></h1>
 
-  <% if (registros.length === 0) { %>
-    <p>No hay datos ingresados todavía.</p>
+  <% if (datos.length === 0) { %>
+    <p>No hay registros guardados aún.</p>
   <% } else { %>
-    <table>
+    <table border="1" cellpadding="8" cellspacing="0">
       <thead>
         <tr>
+          <th>ID</th>
+          <th>Fecha de Registro</th>
           <th>Nombre</th>
-          <th>Email</th>
-          <th>Mensaje</th>
-          <th>Fecha</th>
+          <th>Descripción</th>
+          <th>Monto</th>
         </tr>
       </thead>
       <tbody>
-        <% registros.forEach(item => { %>
+        <% datos.forEach(item => { %>
           <tr>
+            <td><%= item.id %></td>
+            <td><%= item.fecha %></td>
             <td><%= item.nombre %></td>
-            <td><%= item.email %></td>
-            <td><%= item.mensaje %></td>
-            <td><%= new Date(item.fecha).toLocaleString() %></td>
+            <td><%= item.descripcion %></td>
+            <td>$<%= item.monto %></td>
           </tr>
-        <% }) %>
+        <% }); %>
       </tbody>
     </table>
   <% } %>
 
   <br>
-  <a href="/nuevo">Ingresar un nuevo registro</a>
+  <a href="/ingresar">Cargar Nuevo Registro</a> | 
+  <a href="/">Volver al Inicio</a>
 </body>
 </html>
+
+ nombre, descripcion,logros,fecha_nacimiento

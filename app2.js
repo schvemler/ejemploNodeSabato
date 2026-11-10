@@ -3,7 +3,9 @@ const path = require('path');
 
 // Importar el modelo de datos
 const datosModel = require('./models/datosModel');
+//para importar el modelo de datos de los proceres
 const proceresModel = require('./models/proceresModel');
+
 const app = express();
 const PUERTO = 3000;
 
@@ -22,26 +24,21 @@ app.get('/', (req, res) => {
 });
 
 // 2. Ruta para Nosotros
-app.get('/shun', (req, res) => {
-  res.render('shun', { titulo: 'shun' });
+app.get('/nosotros', (req, res) => {
+  res.render('nosotros', { titulo: 'Sobre Nosotros' });
 });
 
-
-app.get('/ikki', (req, res) => {
-  res.render('ikki', { titulo: 'ikki' });
+// 3. Ruta para Contacto
+app.get('/contacto', (req, res) => {
+  res.render('contacto', { titulo: 'Contáctanos' });
 });
 
-
-app.get('/informacionGeneral', (req, res) => {
-  res.render('informacionGeneral', { titulo: 'informacion General' });
+// 4. Ruta para La Maxi Lista 
+app.get('/lamaxilista', (req, res) => {
+  res.render('lamaxilista', { titulo: 'La Maxi Lista' });
 });
 
-
-
-
-
-
-
+// 5. Ruta para Transferencias
 app.get('/transferencias', (req, res) => {
   res.render('transferencias', { titulo: 'Transferencias' });
 });
@@ -65,7 +62,7 @@ app.post('/ingresar', (req, res) => {
   proceresModel.guardar({ nombre, descripcion,logros,fecha_nacimiento});
   
   // Redireccionar a la vista de la tabla
-  res.redirect('/registros_proceres');
+  res.redirect('/registros');
 });
 
 
@@ -126,8 +123,6 @@ app.get('/proceres/:id', (req, res) => {
     procer 
   });
 });
-
-
 
 
 // Iniciar servidor

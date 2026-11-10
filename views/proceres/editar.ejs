@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title><%= titulo %></title>
+</head>
+<body>
+  <h1><%= titulo %>: <%= procer.nombre %></h1>
+ 
+  <!-- La acción del formulario apunta dinámicamente a la ruta POST con el ID del prócer -->
+  <form action="/proceres/editar/<%= procer.id %>" method="POST">
+    <div>
+      <label for="nombre">Nombre del prócer Argentino:</label><br>
+      <input type="text" id="nombre" name="nombre" value="<%= procer.nombre %>" required>
+    </div>
+    <br>
+    <div>
+      <label for="descripcion">Descripción:</label><br>
+      <input type="text" id="descripcion" name="descripcion" value="<%= procer.descripcion %>" required>
+    </div>
+    <br>
+    <div>
+      <label for="logros">Logros:</label><br>
+      <input type="text" id="logros" name="logros" value="<%= procer.logros %>" required>
+    </div>
+    <br>
+    <div>
+      <label for="fecha_nacimiento">Fecha de Nacimiento:</label><br>
+      <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" value="<%= procer.fecha_nacimiento %>" required>
+    </div>
+    <br>
+    <button type="submit">Actualizar Registro</button>
+  </form>
+
+  <br>
+  <a href="/registros_proceres">Ver Tabla de Registros Guardados</a> | 
+  <a href="/">Volver al Inicio</a>
+</body>
+</html>
