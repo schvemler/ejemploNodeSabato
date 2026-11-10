@@ -18,6 +18,7 @@
           <th>Nombre</th>
           <th>Descripción</th>
           <th>Logros</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,10 @@
             <td><%= item.nombre %></td>
             <td><%= item.descripcion %></td>
             <td><%= item.logros %></td>
+            <td>
+              <a href="/proceres/editar/<%= item.id %>">Editar</a> |
+              <a href="/proceres/eliminar/<%= item.id %>" onclick="return confirm('¿Estás seguro de que quieres eliminar este registro?');">Eliminar</a>
+            </td>
           </tr>
         <% }); %>
       </tbody>
