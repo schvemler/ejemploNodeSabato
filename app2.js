@@ -62,7 +62,7 @@ app.post('/ingresar', (req, res) => {
   proceresModel.guardar({ nombre, descripcion,logros,fecha_nacimiento});
   
   // Redireccionar a la vista de la tabla
-  res.redirect('/registros');
+  res.redirect('/registros_proceres');
 });
 
 
@@ -110,6 +110,11 @@ app.post('/proceres/eliminar/:id', (req, res) => {
   res.redirect('/registros_proceres');
 });
 
+
+app.get('/proceres/eliminar/:id', (req, res) => {
+  proceresModel.eliminarPorId(req.params.id);
+  res.redirect('/registros_proceres');
+});
 // 4. Ver el detalle individual de un prócer por su ID
 app.get('/proceres/:id', (req, res) => {
   const procer = proceresModel.obtenerPorId(req.params.id);

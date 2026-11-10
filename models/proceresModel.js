@@ -1,3 +1,4 @@
+const { CONNREFUSED } = require('dns');
 const fs = require('fs');
 const path = require('path');
 
@@ -52,7 +53,7 @@ function obtenerPorId(id) {
 }
 
 // Actualizar un registro existente por su ID (UPDATE)
-function actualizar(id, datosActualizados) {
+function editarPorId (id, datosActualizados) {
   asegurarArchivo();
   const datos = obtenerTodos();
   let registroActualizado = null;
@@ -78,7 +79,7 @@ function actualizar(id, datosActualizados) {
 }
 
 // Eliminar un registro por su ID (DELETE)
-function eliminar(id) {
+function eliminarPorId(id) {
   asegurarArchivo();
   const datos = obtenerTodos();
   const datosFiltrados = datos.filter(item => String(item.id) !== String(id));
@@ -97,13 +98,10 @@ function eliminar(id) {
 
 
 
-
-
-
 module.exports = {
   obtenerTodos,
   guardar,
   obtenerPorId,
-  actualizar,
-  eliminar
+  editarPorId ,
+  eliminarPorId
 };
