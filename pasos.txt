@@ -1,6 +1,5 @@
 npm init -y
 npm install express ejs
-npm install mongoose
 
 
 node app2.js
@@ -8,6 +7,7 @@ node app2.js
 http://localhost:3000
 
 
+git clone https://github.com/schvemler/ejemploNodeSabato.git
 
 
 
